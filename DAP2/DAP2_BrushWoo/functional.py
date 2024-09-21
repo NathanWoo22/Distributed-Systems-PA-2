@@ -52,7 +52,33 @@ class Maekawa():
         listenSocket.bind(('',), self.hosts[self.myNum][1])
         while 1:
             message, clientAddress = listenSocket.recvfrom(4096)
-
+            composed = message.decode()
+            decomposed = composed.split(sep= ',')
+            if len(decomposed) == 3:
+                print("message recieved")
+                #Update VecClock with new info
+                process = int(decomposed[0])
+                clockVal = int(decomposed[1])
+                messageVal = int(decomposed[2])
+                self.clockLock.acquire()
+                self.vecClock[process] = max(self.vecClock[process],clockVal)
+                self.clockLock.release()
+                match messageVal:
+                    case 0:
+                        print("Ack")
+                        self.acksLock.acquire()
+                        self.myAcks[process] = True
+                        self.acksLock.release()
+                    case 1:
+                        print("Request")
+                        self.requLock.acquire()
+                        self.myRequests[process] = True
+                        self.requLock.release()
+                    case 2:
+                        print("Release")
+                        self.releLock.acquire()
+                        self.myReleases[process] = True
+                        self.releLock.release()
         return
 
     #sendID should be integer corresponding to desired process to send too
