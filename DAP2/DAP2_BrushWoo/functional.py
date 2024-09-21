@@ -1,3 +1,5 @@
+import numpy as np
+
 import threading
 from socket import *
 
@@ -5,7 +7,7 @@ def main():
     print("Hello World!")
 
 class Maekawa():
-    def __init__():
+    def __init__(self):
         return
     
     #thishost is an int and hosts is an array of pairs (ip, port)
@@ -27,8 +29,39 @@ class Maekawa():
         self.listenThread.start()
         return 
 
-    def CreateSubsets(self):
-        # Determine size of the grid 
+    def CreateSubsets(selfself):
+
+        grid_size = int(np.ceil(np.sqrt(self.numProcess)))
+
+        # Initialize grid to form subsets
+        grid = np.arange(1, grid_size**2 + 1).reshape(grid_size, grid_size)
+
+        # Remove any nodes outside the original
+        for i in range(grid_size):
+            for j in range(grid_size):
+                if grid[i][j] > self.numProcess:
+                    grid[i][j] = -1
+        
+        subsets = {}
+        # Generate the subsets from the row column union
+        for i in range(grid_size):
+            for j in range(grid_size):
+                if grid[i][j] == -1:
+                    continue
+                row = grid[i,:]
+                col = grid[:,j]
+                subset = set(row) | set(col)
+
+                # Remove the -1's indicating no entries
+                if (-1 in subset):
+                    subset.remove(-1)
+                
+                subset = [int(x) for x in subset]
+                print(subset)
+
+
+
+        print(grid)
         return
 
     def QuitAndCleanup(self):
