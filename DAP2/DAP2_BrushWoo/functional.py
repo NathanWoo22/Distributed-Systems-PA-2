@@ -25,6 +25,8 @@ class Maekawa():
         self.requLock = threading.Lock()
         self.sendSocket = socket(AF_INET,SOCK_DGRAM)
         #Last thing to happen
+        self.listenSocket = socket(AF_INET, SOCK_DGRAM)
+        self.listenSocket.bind(('',), self.processes[self.myNum][1])
         self.listenThread = threading.Thread(target= self.Listen, daemon=True)
         self.listenThread.start()
         return 
@@ -109,10 +111,8 @@ class Maekawa():
     
     #Should be started in a seperate thread
     def Listen(self):
-        listenSocket = socket(AF_INET, SOCK_DGRAM)
-        listenSocket.bind(('',), self.hosts[self.myNum][1])
         while 1:
-            message, clientAddress = listenSocket.recvfrom(4096)
+            message, clientAddress = self.listenSocket.recvfrom(4096)
             composed = message.decode()
             decomposed = composed.split(sep= ',')
             if len(decomposed) == 3:
