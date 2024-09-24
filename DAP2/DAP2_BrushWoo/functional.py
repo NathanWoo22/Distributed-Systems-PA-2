@@ -3,7 +3,7 @@ import copy
 import threading
 from socket import *
 
-def main():
+def test_function():
     print("Hello World!")
 
 class Maekawa():
@@ -29,7 +29,7 @@ class Maekawa():
         self.listenThread.start()
         return 
 
-    def CreateSubsets(selfself):
+    def CreateSubsets(self):
 
         grid_size = int(np.ceil(np.sqrt(self.numProcess)))
 
@@ -154,6 +154,3 @@ class Maekawa():
         self.sendSocket.sendto(composed, (sendAddress,sendPort))
         self.clockLock.release()
         return
-
-if __name__ == "__main__":
-    main()
