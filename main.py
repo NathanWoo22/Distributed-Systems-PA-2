@@ -1,5 +1,7 @@
-import DAP2.DAP2_BrushWoo.functional as fns
+import DAP2_BrushWoo as dap
+from DAP2_BrushWoo import functional 
 
-maekawa = fns.Maekawa()
-maekawa.GlobalInitialize(1, [1, 2, 3])
+# functional.test_function()
+maekawa = functional.Maekawa()
+maekawa.GlobalInitialize(1, [1, 2, 3, 4, 5])
 maekawa.CreateSubsets()
