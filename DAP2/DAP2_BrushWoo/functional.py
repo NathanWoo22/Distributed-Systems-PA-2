@@ -138,11 +138,11 @@ class Maekawa():
                         self.acksLock.release()
                     case 1:
                         print("Request")
-                        orderRequest(process, curClock)
+                        self.orderRequest(process, curClock)
                     case 2:
                         print("Release")
                         self.releLock.acquire()
-                        self.myReleases[process] = True
+                        self.myReleases.append(process)
                         self.releLock.release()
         return
 
