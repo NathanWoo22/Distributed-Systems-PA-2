@@ -1,5 +1,5 @@
 import numpy as np
-
+import copy
 import threading
 from socket import *
 
@@ -19,9 +19,9 @@ class Maekawa():
         self.clockLock = threading.Lock()
         self.myAcks = [False]*len(hosts)
         self.acksLock = threading.Lock()
-        self.myReleases = [False]*len(hosts)
+        self.myReleases = []
         self.releLock = threading.Lock()
-        self.myRequests = [False]*len(hosts)
+        self.myRequests = []
         self.requLock = threading.Lock()
         self.sendSocket = socket(AF_INET,SOCK_DGRAM)
         #Last thing to happen
@@ -79,6 +79,34 @@ class Maekawa():
     def MCleanup(self):
         return
     
+    #updates order of requests based on clock info will block to obtain requLock
+    def orderRequest(self, processID, curClock):
+        self.requLock.acquire() 
+        #check if requests is empty
+        if not self.myRequests:
+            self.myRequests.append((processID, curClock))
+        else:
+            inserted = False
+            for i in range(len(self.myRequests)):
+                curGreat = False
+                compGreat = False
+                compClock = self.myRequests[i]
+                for j in range(len(curClock)):
+                    if compClock[j] > curClock[j]:
+                        compGreat = True
+                    elif compClock[j] < curClock[j]:
+                        curGreat = True
+                #Current Clock is less than comparison clock
+                if compGreat and not curGreat:
+                    self.myRequests.insert(i, (processID, curClock))
+                    inserted = True
+                    break
+            #Last in queue
+            if not inserted:
+                self.myRequests.append((processID))
+        self.requLock.release()
+        return
+    
     #Should be started in a seperate thread
     def Listen(self):
         listenSocket = socket(AF_INET, SOCK_DGRAM)
@@ -95,6 +123,7 @@ class Maekawa():
                 messageVal = int(decomposed[2])
                 self.clockLock.acquire()
                 self.vecClock[process] = max(self.vecClock[process],clockVal)
+                curClock = copy.copy(self.vecClock)
                 self.clockLock.release()
                 match messageVal:
                     case 0:
@@ -104,9 +133,7 @@ class Maekawa():
                         self.acksLock.release()
                     case 1:
                         print("Request")
-                        self.requLock.acquire()
-                        self.myRequests[process] = True
-                        self.requLock.release()
+                        orderRequest(process, curClock)
                     case 2:
                         print("Release")
                         self.releLock.acquire()
