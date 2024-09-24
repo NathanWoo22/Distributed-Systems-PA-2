@@ -26,7 +26,7 @@ class Maekawa():
         self.sendSocket = socket(AF_INET,SOCK_DGRAM)
         #Last thing to happen
         self.listenSocket = socket(AF_INET, SOCK_DGRAM)
-        self.listenSocket.bind(('',), self.processes[self.myNum][1])
+        self.listenSocket.bind(('', self.processes[self.myNum][1]))
         self.listenThread = threading.Thread(target= self.Listen, daemon=True)
         self.listenThread.start()
         return 
