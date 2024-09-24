@@ -45,6 +45,7 @@ class Maekawa():
                     grid[i][j] = -1
         
         subsets = {}
+        count = 1
         # Generate the subsets from the row column union
         for i in range(grid_size):
             for j in range(grid_size):
@@ -59,11 +60,15 @@ class Maekawa():
                     subset.remove(-1)
                 
                 subset = [int(x) for x in subset]
-                print(subset)
+                
+                print(f"Subset for process {count}: {subset}")
 
+                if count == self.myNum:
+                    self.subset = subset 
 
-
-        print(grid)
+                count += 1
+        
+        print(f"My subset (process {self.myNum}) is {self.subset}")
         return
 
     def QuitAndCleanup(self):
