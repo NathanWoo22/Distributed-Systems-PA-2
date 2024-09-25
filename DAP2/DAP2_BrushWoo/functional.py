@@ -138,20 +138,19 @@ class Maekawa():
                 self.vecClock[process] = max(self.vecClock[process],clockVal)
                 curClock = copy.copy(self.vecClock)
                 self.clockLock.release()
-                match messageVal:
-                    case 0:
-                        print("Ack")
-                        self.acksLock.acquire()
-                        self.myAcks[process] = True
-                        self.acksLock.release()
-                    case 1:
-                        print("Request")
-                        self.orderRequest(process, curClock)
-                    case 2:
-                        print("Release")
-                        self.releLock.acquire()
-                        self.myReleases.append(process)
-                        self.releLock.release()
+                if messageVal == 0:
+                    print("Ack")
+                    self.acksLock.acquire()
+                    self.myAcks[process] = True
+                    self.acksLock.release()
+                elif messageVal == 1:
+                    print("Request")
+                    self.orderRequest(process, curClock)
+                elif messageVal == 2:
+                    print("Release")
+                    self.releLock.acquire()
+                    self.myReleases.append(process)
+                    self.releLock.release()
         return
 
     #sendID should be integer corresponding to desired process to send too
