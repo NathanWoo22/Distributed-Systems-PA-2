@@ -13,6 +13,7 @@ class Maekawa():
     #thishost is an int and hosts is an array of pairs (ip, port)
     def GlobalInitialize(self, thishost, hosts):
         self.numProcess = len(hosts)
+        self.hosts = hosts
         self.myNum = thishost
         self.processes = hosts
         self.vecClock = [0]*len(hosts)
@@ -78,9 +79,17 @@ class Maekawa():
         return
 
     def MLockMutex(self):
+        # Send request message to everyone but itself
+        for host in self.subset:
+            if host != self.myNum:
+                self.MessageSending(host, 1) 
         return
 
     def MReleaseMutex(self):
+        # Send release message to everyone but itself
+        for host in self.subset:
+            if host != self.myNum:
+                self.MessageSending(host, 2) 
         return
 
     def MCleanup(self):
@@ -121,7 +130,6 @@ class Maekawa():
             composed = message.decode()
             decomposed = composed.split(sep= ',')
             if len(decomposed) == 3:
-                print("message recieved")
                 #Update VecClock with new info
                 process = int(decomposed[0])
                 clockVal = int(decomposed[1])
@@ -154,8 +162,8 @@ class Maekawa():
         #Message Either Ack or Request
         self.clockLock.acquire()
         self.vecClock[self.myNum] = self.vecClock[self.myNum] + 1
-        sendAddress, sendPort = self.hosts[sendId]
-        composed = f"{self.myNum},{self.vecClock[self.myNum],Message}".encode()
+        sendAddress, sendPort = self.hosts[sendId - 1] # -1 to correct indexing error
+        composed = f"{self.myNum},{self.vecClock[self.myNum]},{Message}".encode()
         self.sendSocket.sendto(composed, (sendAddress,sendPort))
         self.clockLock.release()
         return
