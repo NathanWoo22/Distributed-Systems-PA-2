@@ -24,6 +24,7 @@ class Maekawa():
         self.releLock = threading.Lock()
         self.myRequests = []
         self.requLock = threading.Lock()
+        self.criticalSection = threading.Lock()
         self.sendSocket = socket(AF_INET,SOCK_DGRAM)
         #Last thing to happen
         self.listenSocket = socket(AF_INET, SOCK_DGRAM)
@@ -83,6 +84,10 @@ class Maekawa():
         for host in self.subset:
             if host != self.myNum:
                 self.MessageSending(host, 1) 
+
+        # have a wait that checks if all have replied with an ack
+        
+        # Once done waiting just return
         return
 
     def MReleaseMutex(self):
@@ -90,10 +95,19 @@ class Maekawa():
         for host in self.subset:
             if host != self.myNum:
                 self.MessageSending(host, 2) 
+                
         return
 
     def MCleanup(self):
         return
+    
+    def receiveRequest(self, process, curClock):
+        # Queue up request
+        self.orderRequest(self, process, curClock)
+        # If only one request, ensure hasn't sent message anywhere else before sending message
+        # Check lock on sending message
+        # If send message already, enqueue request
+        # Else vote for requestor by sending ok (ack)
     
     #updates order of requests based on clock info will block to obtain requLock
     def orderRequest(self, processID, curClock):
@@ -145,7 +159,7 @@ class Maekawa():
                     self.acksLock.release()
                 elif messageVal == 1:
                     print("Request")
-                    self.orderRequest(process, curClock)
+                    self.receiveRequest(process, curClock)
                 elif messageVal == 2:
                     print("Release")
                     self.releLock.acquire()
