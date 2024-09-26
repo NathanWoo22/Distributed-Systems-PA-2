@@ -11,7 +11,7 @@ from socket import *
 # listenThread.start()
 
 maekawa =fnl.Maekawa()
-maekawa.GlobalInitialize(1, [("138.67.169.67", 5555), ("isengard", 5556)])
+maekawa.GlobalInitialize(1, [("10.60.68.172", 5555), ("isengard", 5556)])
 maekawa.CreateSubsets()
 maekawa.MLockMutex()
 maekawa.MReleaseMutex()
