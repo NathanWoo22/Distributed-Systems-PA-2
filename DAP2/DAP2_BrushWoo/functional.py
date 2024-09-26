@@ -2,6 +2,8 @@ import numpy as np
 import copy
 import threading
 from socket import *
+import heapq
+import time
 
 def test_function():
     print("Hello World!")
@@ -25,6 +27,9 @@ class Maekawa():
         self.myRequests = []
         self.requLock = threading.Lock()
         self.criticalSection = threading.Lock()
+        self.sentMessage = threading.Lock()
+        self.voteGiven = False
+        self.voteGivenLock = threading.Lock()
         self.sendSocket = socket(AF_INET,SOCK_DGRAM)
         #Last thing to happen
         self.listenSocket = socket(AF_INET, SOCK_DGRAM)
@@ -83,10 +88,14 @@ class Maekawa():
         # Send request message to everyone but itself
         for host in self.subset:
             if host != self.myNum:
-                self.MessageSending(host, 1) 
+                thread = threading.Thread(target=self.MessageSending(host, 1), daemon=True)
+                thread.start()
+                thread.join()
+                # self.MessageSending(host, 1) 
 
         # have a wait that checks if all have replied with an ack
-        
+        while True:
+            time.sleep(1)
         # Once done waiting just return
         return
 
@@ -95,20 +104,32 @@ class Maekawa():
         for host in self.subset:
             if host != self.myNum:
                 self.MessageSending(host, 2) 
+
                 
         return
 
     def MCleanup(self):
         return
     
-    def receiveRequest(self, process, curClock):
+    def receiveRequest(self, processID, curClock):
         # Queue up request
-        self.orderRequest(self, process, curClock)
+        # self.orderRequest(processID, curClock)
         # If only one request, ensure hasn't sent message anywhere else before sending message
-        # Check lock on sending message
-        # If send message already, enqueue request
-        # Else vote for requestor by sending ok (ack)
-    
+        heapq.heappush(self.myRequests, (curClock, processID))
+        
+        # Sends the ack back to the process requesting, if vote not already given
+        if self.voteGiven == False:
+            self.voteGivenLock.acquire()
+            self.voteGiven = True
+            requestClock, processRequestAcked = heapq.heappop(self.myRequests)
+            thread = threading.Thread(target=self.MessageSending(processRequestAcked, 0), daemon=True)
+            thread.start()
+            thread.join()
+            self.voteGiven = False
+            self.voteGivenLock.release()
+                
+        
+
     #updates order of requests based on clock info will block to obtain requLock
     def orderRequest(self, processID, curClock):
         self.requLock.acquire() 
@@ -145,25 +166,25 @@ class Maekawa():
             decomposed = composed.split(sep= ',')
             if len(decomposed) == 3:
                 #Update VecClock with new info
-                process = int(decomposed[0])
+                processId = int(decomposed[0])
                 clockVal = int(decomposed[1])
                 messageVal = int(decomposed[2])
                 self.clockLock.acquire()
-                self.vecClock[process] = max(self.vecClock[process],clockVal)
+                self.vecClock[processId] = max(self.vecClock[processId],clockVal)
                 curClock = copy.copy(self.vecClock)
                 self.clockLock.release()
                 if messageVal == 0:
                     print("Ack")
                     self.acksLock.acquire()
-                    self.myAcks[process] = True
+                    self.myAcks[processId] = True
                     self.acksLock.release()
                 elif messageVal == 1:
                     print("Request")
-                    self.receiveRequest(process, curClock)
+                    self.receiveRequest(processId, curClock)
                 elif messageVal == 2:
                     print("Release")
                     self.releLock.acquire()
-                    self.myReleases.append(process)
+                    self.myReleases.append(processId)
                     self.releLock.release()
         return
 
