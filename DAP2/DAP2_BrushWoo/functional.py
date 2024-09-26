@@ -16,7 +16,7 @@ class Maekawa():
     def GlobalInitialize(self, thishost, hosts):
         self.numProcess = len(hosts)
         self.hosts = hosts
-        self.myNum = thishost
+        self.myNum = thishost - 1
         self.processes = hosts
         self.vecClock = [0]*len(hosts)
         self.clockLock = threading.Lock()
@@ -33,7 +33,7 @@ class Maekawa():
         self.sendSocket = socket(AF_INET,SOCK_DGRAM)
         #Last thing to happen
         self.listenSocket = socket(AF_INET, SOCK_DGRAM)
-        self.listenSocket.bind(('', self.processes[self.myNum][1]))
+        self.listenSocket.bind(('', self.processes[self.myNum-1][1]))
         self.listenThread = threading.Thread(target= self.Listen, daemon=True)
         self.listenThread.start()
         return 
@@ -70,7 +70,7 @@ class Maekawa():
                 
                 print(f"Subset for process {count}: {subset}")
 
-                if count == self.myNum:
+                if count == self.myNum + 1:
                     self.subset = subset 
 
                 count += 1
@@ -87,7 +87,7 @@ class Maekawa():
     def MLockMutex(self):
         # Send request message to everyone but itself
         for host in self.subset:
-            if host != self.myNum:
+            if host != self.myNum + 1:
                 thread = threading.Thread(target=self.MessageSending(host, 1), daemon=True)
                 thread.start()
                 thread.join()
