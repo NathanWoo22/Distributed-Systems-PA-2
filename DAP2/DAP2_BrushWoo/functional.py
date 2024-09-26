@@ -87,7 +87,7 @@ class Maekawa():
     def MLockMutex(self):
         # Send request message to everyone but itself
         for host in self.subset:
-            if host != self.myNum:
+            if host != self.myNum + 1:
                 thread = threading.Thread(target=self.MessageSending(host, 1), daemon=True)
                 thread.start()
                 thread.join()
@@ -122,7 +122,7 @@ class Maekawa():
             self.voteGivenLock.acquire()
             self.voteGiven = True
             requestClock, processRequestAcked = heapq.heappop(self.myRequests)
-            thread = threading.Thread(target=self.MessageSending(processRequestAcked, 0), daemon=True)
+            thread = threading.Thread(target=self.MessageSending(processRequestAcked, 0))
             thread.start()
             thread.join()
             self.voteGiven = False
@@ -196,8 +196,9 @@ class Maekawa():
         #Message Either Ack or Request
         self.clockLock.acquire()
         self.vecClock[self.myNum] = self.vecClock[self.myNum] + 1
-        sendAddress, sendPort = self.hosts[sendId - 1] # -1 to correct indexing error
+        sendAddress, sendPort = self.hosts[sendId] # -1 to correct indexing error
         composed = f"{self.myNum},{self.vecClock[self.myNum]},{Message}".encode()
+        print(f"Sending message to: {(sendAddress,sendPort)}")
         self.sendSocket.sendto(composed, (sendAddress,sendPort))
         self.clockLock.release()
         return
