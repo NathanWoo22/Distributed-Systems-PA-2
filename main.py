@@ -6,6 +6,7 @@ import numpy as np
 import copy
 import threading
 from socket import *
+import time
 
 # listenThread = threading.Thread(target=Listen, daemon=True)
 # listenThread.start()
@@ -13,5 +14,7 @@ from socket import *
 maekawa =fnl.Maekawa()
 maekawa.GlobalInitialize(1, [("10.60.68.172", 5555), ("isengard", 5556)])
 maekawa.CreateSubsets()
-maekawa.MLockMutex()
-maekawa.MReleaseMutex()
+# while True:
+    # time.sleep(1)
+# maekawa.MLockMutex()
+# maekawa.MReleaseMutex()
