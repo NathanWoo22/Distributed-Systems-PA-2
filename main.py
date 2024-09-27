@@ -12,7 +12,7 @@ import time
 # listenThread.start()
 maekawa =fnl.Maekawa()
 
-maekawa.GlobalInitialize(1, [("ctb60-01", 5555), ("isengard", 5556)])
+maekawa.GlobalInitialize(2, [("ctb60-01", 5555), ("isengard", 5556)])
 
 maekawa.CreateSubsets()
 # while True:
