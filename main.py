@@ -11,7 +11,9 @@ import time
 # listenThread = threading.Thread(target=Listen, daemon=True)
 # listenThread.start()
 maekawa =fnl.Maekawa()
-maekawa.GlobalInitialize(2, [("10.60.68.172", 5555), ("isengard", 5556)])
+
+maekawa.GlobalInitialize(1, [("ctb60-01", 5555), ("isengard", 5556)])
+
 maekawa.CreateSubsets()
 # while True:
     # time.sleep(1)
