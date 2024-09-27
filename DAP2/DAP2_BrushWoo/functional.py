@@ -141,7 +141,21 @@ class Maekawa():
         self.voteGivenLock.release()
         return
                 
-        
+    def receiveRelease(self, processID, curClock):
+        self.voteGivenLock.acquire()
+        self.voteGiven = False
+        if self.voteGiven == False:
+            if len(self.myRequests) == 0:
+                self.voteGiven = False
+            else:
+                self.voteGiven = True
+                requestClock, processRequestAcked = heapq.heappop(self.myRequests)
+                thread = threading.Thread(target=self.MessageSending(processRequestAcked, 0))
+                thread.start()
+                thread.join()
+        self.voteGivenLock.release()
+        return
+
 
     #updates order of requests based on clock info will block to obtain requLock
     def orderRequest(self, processID, curClock):
@@ -189,7 +203,7 @@ class Maekawa():
                 if messageVal == 0:
                     print(f"Received Ack from {processId}")
                     self.acksLock.acquire()
-                    self.myAcks[processId + 1] = True
+                    self.myAcks[processId] = True
                     self.acksLock.release()
                 elif messageVal == 1:
                     print(f"Received Request from {processId}")
@@ -212,7 +226,7 @@ class Maekawa():
         self.vecClock[self.myNum] = self.vecClock[self.myNum] + 1
         sendAddress, sendPort = self.hosts[sendId - 1] # -1 to correct indexing error
         composed = f"{self.myNum},{self.vecClock[self.myNum]},{Message}".encode()
-        print(f"Sending message type {Message} to: {(sendAddress,sendPort)}")
+        print(f"Sending message type {Message}: {(sendAddress,sendPort)}")
         self.sendSocket.sendto(composed, (sendAddress,sendPort))
         self.clockLock.release()
         return
