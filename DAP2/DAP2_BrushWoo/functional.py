@@ -33,7 +33,7 @@ class Maekawa():
         self.sendSocket = socket(AF_INET,SOCK_DGRAM)
         #Last thing to happen
         self.listenSocket = socket(AF_INET, SOCK_DGRAM)
-        self.listenSocket.bind(('', self.processes[self.myNum-1][1]))
+        self.listenSocket.bind(('', self.processes[self.myNum][1]))
         self.listenThread = threading.Thread(target= self.Listen, daemon=True)
         self.listenThread.start()
         return 
@@ -87,7 +87,7 @@ class Maekawa():
     def MLockMutex(self):
         # Send request message to everyone but itself
         for host in self.subset:
-            if host != self.myNum + 1:
+            if host - 1 != self.myNum:
                 thread = threading.Thread(target=self.MessageSending(host, 1), daemon=True)
                 thread.start()
                 thread.join()
@@ -95,14 +95,27 @@ class Maekawa():
 
         # have a wait that checks if all have replied with an ack
         while True:
-            time.sleep(1)
+            allAckedFlag = True
+            # Check  that each process has sent ack before returning
+            for i, host in enumerate(self.subset):
+                if host - 1 == self.myNum:
+                    continue
+                if self.myAcks[host-1] == False:
+                    allAckedFlag = False
+                    break
+            if allAckedFlag:
+                print("Recieved acks from all other subsets! Can now enter critical section")
+                self.vecClock = [0]*len(self.hosts)
+                return
+
+            # time.sleep(1)
         # Once done waiting just return
-        return
+        # return
 
     def MReleaseMutex(self):
         # Send release message to everyone but itself
         for host in self.subset:
-            if host != self.myNum:
+            if host - 1 != self.myNum:
                 self.MessageSending(host, 2) 
 
                 
@@ -117,18 +130,32 @@ class Maekawa():
         # If only one request, ensure hasn't sent message anywhere else before sending message
         heapq.heappush(self.myRequests, (curClock, processID))
         
+        self.voteGivenLock.acquire()
         # Sends the ack back to the process requesting, if vote not already given
         if self.voteGiven == False:
-            self.voteGivenLock.acquire()
             self.voteGiven = True
             requestClock, processRequestAcked = heapq.heappop(self.myRequests)
-            thread = threading.Thread(target=self.MessageSending(processRequestAcked, 0))
+            thread = threading.Thread(target=self.MessageSending(processRequestAcked - 1, 0))
             thread.start()
             thread.join()
-            self.voteGiven = False
-            self.voteGivenLock.release()
+        self.voteGivenLock.release()
+        return
                 
-        
+    def receiveRelease(self, processID, curClock):
+        self.voteGivenLock.acquire()
+        self.voteGiven = False
+        if self.voteGiven == False:
+            if len(self.myRequests) == 0:
+                self.voteGiven = False
+            else:
+                self.voteGiven = True
+                requestClock, processRequestAcked = heapq.heappop(self.myRequests)
+                thread = threading.Thread(target=self.MessageSending(processRequestAcked, 0))
+                thread.start()
+                thread.join()
+        self.voteGivenLock.release()
+        return
+
 
     #updates order of requests based on clock info will block to obtain requLock
     def orderRequest(self, processID, curClock):
@@ -174,18 +201,19 @@ class Maekawa():
                 curClock = copy.copy(self.vecClock)
                 self.clockLock.release()
                 if messageVal == 0:
-                    print("Ack")
+                    print(f"Received Ack from {processId}")
                     self.acksLock.acquire()
                     self.myAcks[processId] = True
                     self.acksLock.release()
                 elif messageVal == 1:
-                    print("Request")
+                    print(f"Received Request from {processId}")
                     self.receiveRequest(processId, curClock)
                 elif messageVal == 2:
-                    print("Release")
-                    self.releLock.acquire()
-                    self.myReleases.append(processId)
-                    self.releLock.release()
+                    print(f"Received Release from {processId}")
+                    self.receiveRelease(processId, curClock)
+                    # self.releLock.acquire()
+                    # self.myReleases.append(processId)
+                    # self.releLock.release()
         return
 
     #sendID should be integer corresponding to desired process to send too
@@ -196,9 +224,9 @@ class Maekawa():
         #Message Either Ack or Request
         self.clockLock.acquire()
         self.vecClock[self.myNum] = self.vecClock[self.myNum] + 1
-        sendAddress, sendPort = self.hosts[sendId] # -1 to correct indexing error
+        sendAddress, sendPort = self.hosts[sendId - 1] # -1 to correct indexing error
         composed = f"{self.myNum},{self.vecClock[self.myNum]},{Message}".encode()
-        print(f"Sending message to: {(sendAddress,sendPort)}")
+        print(f"Sending message type {Message} to: {(sendAddress,sendPort)}")
         self.sendSocket.sendto(composed, (sendAddress,sendPort))
         self.clockLock.release()
         return

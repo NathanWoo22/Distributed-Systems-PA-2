@@ -10,13 +10,15 @@ import time
 
 # listenThread = threading.Thread(target=Listen, daemon=True)
 # listenThread.start()
-
 maekawa =fnl.Maekawa()
-
-maekawa.GlobalInitialize(1, [("ctb60-01", 5555), ("isengard", 5556)])
-
+maekawa.GlobalInitialize(2, [("10.60.68.172", 5555), ("isengard", 5556)])
 maekawa.CreateSubsets()
 # while True:
     # time.sleep(1)
-# maekawa.MLockMutex()
-# maekawa.MReleaseMutex()
+# time.sleep(2)
+maekawa.MInitailize()
+maekawa.MLockMutex()
+print("Process 1 entering critical section")
+maekawa.MReleaseMutex()
+maekawa.MCleanup()
+maekawa.QuitAndCleanup()
