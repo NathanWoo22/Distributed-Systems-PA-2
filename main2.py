@@ -9,11 +9,14 @@ from socket import *
 import time
 
 maekawa =fnl.Maekawa()
-maekawa.GlobalInitialize(1, [("10.60.68.172", 5555), ("isengard", 5556)])
+maekawa.GlobalInitialize(2, [("10.60.68.172", 5555), ("isengard", 5556)])
 maekawa.CreateSubsets()
 maekawa.MInitailize()
 maekawa.MLockMutex()
-print("Process 1 entering critical section")
+print("Process 2 entering critical section")
+maekawa.MReleaseMutex()
+maekawa.MLockMutex()
+print("Process 2 entering critical section")
 maekawa.MReleaseMutex()
 maekawa.MCleanup()
 maekawa.QuitAndCleanup()
