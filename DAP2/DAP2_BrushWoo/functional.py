@@ -4,6 +4,7 @@ import threading
 from socket import *
 import heapq
 import time
+import logging
 
 def test_function():
     print("Hello World!")
@@ -14,6 +15,8 @@ class Maekawa():
     
     #thishost is an int and hosts is an array of pairs (ip, port)
     def GlobalInitialize(self, thishost, hosts):
+        self.logger = logging.getLogger(__name__)
+        logging.basicConfig(filename='debug_log.log', encoding='utf-8', level=logging.DEBUG)
         self.numProcess = len(hosts)
         self.hosts = hosts
         self.myNum = thishost - 1
@@ -198,18 +201,19 @@ class Maekawa():
                 messageVal = int(decomposed[2])
                 self.clockLock.acquire()
                 self.vecClock[processId] = max(self.vecClock[processId],clockVal)
+                print(self.vecClock)
                 curClock = copy.copy(self.vecClock)
                 self.clockLock.release()
                 if messageVal == 0:
-                    print(f"Received Ack from {processId}")
+                    self.logger.info(f"Received Ack from {processId}")
                     self.acksLock.acquire()
                     self.myAcks[processId] = True
                     self.acksLock.release()
                 elif messageVal == 1:
-                    print(f"Received Request from {processId}")
+                    self.logger.info(f"Received Request from {processId}")
                     self.receiveRequest(processId, curClock)
                 elif messageVal == 2:
-                    print(f"Received Release from {processId}")
+                    self.logger.info(f"Received Release from {processId}")
                     self.receiveRelease(processId, curClock)
                     # self.releLock.acquire()
                     # self.myReleases.append(processId)
@@ -226,7 +230,7 @@ class Maekawa():
         self.vecClock[self.myNum] = self.vecClock[self.myNum] + 1
         sendAddress, sendPort = self.hosts[sendId - 1] # -1 to correct indexing error
         composed = f"{self.myNum},{self.vecClock[self.myNum]},{Message}".encode()
-        print(f"Sending message type {Message}: {(sendAddress,sendPort)}")
+        self.logger.info(f"Sending message type {Message}: {(sendAddress,sendPort)}")
         self.sendSocket.sendto(composed, (sendAddress,sendPort))
         self.clockLock.release()
         return
