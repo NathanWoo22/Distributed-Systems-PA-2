@@ -20,4 +20,5 @@ Running:
  - Then each individual process can run Maekawa.MInitalize(), to initalize the mutex. Then, calling MLockMutex() will request a lock, while MReleaseMutex() will release the lock on the mutex. Put the critical section inbetween the MLockMutex() and MReleaseMutex(). Then, to finish the process, call MCleanup() and QuitAndCleanup() to cleanup the process. 
  - You will have to define the IP Adresses of all processes you want to run.
  - There are sample runs in main.py and main2.py. If you want to compile the library, and install the library locally with pip that is an option as well. 
+ - To build the library and use it locally: `python3 DAP2/setup.py bdist_wheel`, then run `pip3 install dist/DAP2_BrushWoo-0.1.0-py3-none-any.whl` to get the library locally, and you can easily reference the classes and functions within the library.
 

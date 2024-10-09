@@ -1,1 +1,6 @@
 INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('isengard', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('isengard', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.68.172', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('isengard', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Request from 1
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 0: ('isengard', 5556)
