@@ -194,15 +194,17 @@ class Maekawa():
         while 1:
             message, clientAddress = self.listenSocket.recvfrom(4096)
             composed = message.decode()
-            decomposed = composed.split(sep= ',')
+            decomposed = composed.split(sep= ' ')
             if len(decomposed) == 3:
                 #Update VecClock with new info
                 processId = int(decomposed[0])
-                clockVal = int(decomposed[1])
-                messageVal = int(decomposed[2])
+                messageVal = int(decomposed[1])
+                clockVals = decomposed[2].split(',')
                 self.clockLock.acquire()
-                self.vecClock[processId] = max(self.vecClock[processId],clockVal)
-                print(f"{self.hosts[self.myNum]}:{self.vecClock}")
+                for i in range(len(self.vecClock)):
+                    self.vecClock[i] = max(self.vecClock[i],int(clockVals[i]))
+                self.vecClock[self.myNum] = self.vecClock[self.myNum] + 1
+                print(f"{self.hosts[self.myNum][0]}:{self.vecClock}")
                 curClock = copy.copy(self.vecClock)
                 self.clockLock.release()
                 if messageVal == 0:
@@ -230,8 +232,12 @@ class Maekawa():
         self.clockLock.acquire()
         self.vecClock[self.myNum] = self.vecClock[self.myNum] + 1
         sendAddress, sendPort = self.hosts[sendId - 1] # -1 to correct indexing error
-        composed = f"{self.myNum},{self.vecClock[self.myNum]},{Message}".encode()
+        messageClock = f"{self.vecClock[0]}"
+        for i in range(1, len(self.vecClock)):
+            messageClock = f"{messageClock},{self.vecClock[i]}"
+        composed = f"{self.myNum} {Message} {messageClock}".encode()
         self.logger.info(f"Sending message type {Message}: {(sendAddress,sendPort)}")
+        print(f"{self.hosts[self.myNum][0]}:{self.vecClock}")
         self.sendSocket.sendto(composed, (sendAddress,sendPort))
         self.clockLock.release()
         return
