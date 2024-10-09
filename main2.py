@@ -1,6 +1,6 @@
 # import DAP2_BrushWoo as dap
 # from DAP2_BrushWoo import functional 
-import DAP2.DAP2_BrushWoo.functional as fnl
+from functional import Maekawa
 # functional.test_function()
 import numpy as np
 import copy
@@ -8,8 +8,8 @@ import threading
 from socket import *
 import time
 
-maekawa =fnl.Maekawa()
-maekawa.GlobalInitialize(2, [("10.60.68.172", 5555), ("isengard", 5556)])
+maekawa =Maekawa()
+maekawa.GlobalInitialize(2, [("10.60.88.67", 5555), ("10.60.88.67", 5556)])
 maekawa.CreateSubsets()
 maekawa.MInitailize()
 maekawa.MLockMutex()
@@ -18,5 +18,6 @@ maekawa.MReleaseMutex()
 maekawa.MLockMutex()
 print("Process 2 entering critical section")
 maekawa.MReleaseMutex()
+time.sleep(2)
 maekawa.MCleanup()
 maekawa.QuitAndCleanup()

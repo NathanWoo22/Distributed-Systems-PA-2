@@ -4,3 +4,75 @@ INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.68.172', 5555
 INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('isengard', 5556)
 INFO:DAP2.DAP2_BrushWoo.functional:Received Request from 1
 INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 0: ('isengard', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('isengard', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.68.172', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.88.67', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Request from 1
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 0: ('10.60.88.67', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Ack from 0
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 2: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 2: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Release from 1
+INFO:DAP2.DAP2_BrushWoo.functional:Received Request from 1
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 0: ('10.60.88.67', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Release from 1
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.88.67', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Request from 1
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 0: ('10.60.88.67', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Ack from 0
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 2: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 2: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Release from 1
+INFO:DAP2.DAP2_BrushWoo.functional:Received Request from 1
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 0: ('10.60.88.67', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Release from 1
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.88.67', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Request from 0
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 0: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Ack from 1
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 2: ('10.60.88.67', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Release from 0
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.88.67', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Request from 0
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 0: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Ack from 1
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 2: ('10.60.88.67', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Release from 0
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.88.67', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Request from 1
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 0: ('10.60.88.67', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Ack from 0
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 2: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 1: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 2: ('10.60.88.67', 5555)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Release from 1
+INFO:DAP2.DAP2_BrushWoo.functional:Received Request from 1
+INFO:DAP2.DAP2_BrushWoo.functional:Sending message type 0: ('10.60.88.67', 5556)
+INFO:DAP2.DAP2_BrushWoo.functional:Received Ack from 0
+INFO:DAP2.DAP2_BrushWoo.functional:Received Release from 1
+INFO:functional:Sending message type 1: ('10.60.88.67', 5556)
+INFO:functional:Sending message type 1: ('10.60.88.67', 5555)
+INFO:functional:Received Request from 1
+INFO:functional:Sending message type 0: ('10.60.88.67', 5556)
+INFO:functional:Received Ack from 0
+INFO:functional:Sending message type 2: ('10.60.88.67', 5555)
+INFO:functional:Sending message type 1: ('10.60.88.67', 5555)
+INFO:functional:Sending message type 2: ('10.60.88.67', 5555)
+INFO:functional:Received Release from 1
+INFO:functional:Received Request from 1
+INFO:functional:Sending message type 0: ('10.60.88.67', 5556)
+INFO:functional:Received Ack from 0
+INFO:functional:Received Release from 1
+INFO:functional:Sending message type 1: ('10.60.88.67', 5556)
+INFO:functional:Sending message type 1: ('10.60.88.67', 5555)
+INFO:functional:Received Request from 1
+INFO:functional:Sending message type 0: ('10.60.88.67', 5556)
+INFO:functional:Received Ack from 0
+INFO:functional:Sending message type 2: ('10.60.88.67', 5555)
+INFO:functional:Received Release from 1

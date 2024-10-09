@@ -125,6 +125,7 @@ class Maekawa():
         return
 
     def MCleanup(self):
+        while self.myRequests: time.sleep(1)
         return
     
     def receiveRequest(self, processID, curClock):
@@ -201,7 +202,7 @@ class Maekawa():
                 messageVal = int(decomposed[2])
                 self.clockLock.acquire()
                 self.vecClock[processId] = max(self.vecClock[processId],clockVal)
-                print(self.vecClock)
+                print(f"{self.hosts[self.myNum]}:{self.vecClock}")
                 curClock = copy.copy(self.vecClock)
                 self.clockLock.release()
                 if messageVal == 0:
