@@ -18,7 +18,7 @@ class Maekawa():
     def GlobalInitialize(self, thishost, hosts):
         self.logger = logging.getLogger(__name__)
         
-        logging.basicConfig(filename='debug_log.log', encoding='utf-8', level=logging.DEBUG)
+        logging.basicConfig(filename='debug_log.log', level=logging.DEBUG)
         self.numProcess = len(hosts)
         self.hosts = hosts
         self.myNum = thishost - 1
