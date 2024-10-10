@@ -131,7 +131,7 @@ class Maekawa():
         while True:
             allAckedFlag = True
             # Check  that each process has sent ack before returning
-            print(self.myAcks)
+            # print(self.myAcks)
             time.sleep(0.5)
             for i, host in enumerate(self.subset):
                 if host - 1 == self.myNum:
@@ -168,9 +168,12 @@ class Maekawa():
             if pending_requests == False and count >= 5: 
                 break
             else:
+                # print(self.myRequests)
+                # print(self.myAcks)
+
                 count += 1
-                time.sleep(1)
-            time.sleep(1)  # Wait a bit before checking again
+                time.sleep(0.5)
+            # time.sleep()  # Wait a bit before checking again
         print("No more requests or pending acknowledgments. Cleanup can proceed.")
         return
     
@@ -200,7 +203,7 @@ class Maekawa():
             else:
                 self.voteGiven = True
                 requestClock, processRequestAcked = heapq.heappop(self.myRequests)
-                thread = threading.Thread(target=self.MessageSending(processRequestAcked, 0))
+                thread = threading.Thread(target=self.MessageSending(processRequestAcked + 1, 0))
                 thread.start()
                 thread.join()
         self.voteGivenLock.release()
@@ -294,7 +297,7 @@ class Maekawa():
             messageClock = f"{messageClock},{self.vecClock[i]}"
         composed = f"{self.myNum} {Message} {messageClock}".encode()
         self.logger.info(f"{self.myNum} Sending message type {Message} to {sendId - 1} {(sendAddress,sendPort)}")
-        print(f"{self.hosts[self.myNum][0]}:{self.vecClock}")
+        # print(f"{self.hosts[self.myNum][0]}:{self.vecClock}")
         self.sendSocket.sendto(composed, (sendAddress,sendPort))
         self.clockLock.release()
         return
