@@ -762,3 +762,291 @@ INFO:functional:0 Sending message type 2 to 3 ('localhost', 5558)
 INFO:functional:1 Received Release from 0
 INFO:functional:3 Received Release from 0
 INFO:functional:2 Received Release from 0
+INFO:functional:4 Sending message type 1 to 1 ('localhost', 5556)
+INFO:functional:1 Received Request from 4
+INFO:functional:1 Sending message type 0 to 4 ('localhost', 5559)
+INFO:functional:4 Sending message type 1 to 3 ('localhost', 5558)
+INFO:functional:4 Received Ack from 1
+INFO:functional:3 Received Request from 4
+INFO:functional:3 Sending message type 0 to 4 ('localhost', 5559)
+INFO:functional:4 Received Ack from 3
+INFO:functional:2 Sending message type 1 to 0 ('localhost', 5555)
+INFO:functional:0 Received Request from 2
+INFO:functional:2 Sending message type 1 to 1 ('localhost', 5556)
+INFO:functional:0 Sending message type 0 to 2 ('localhost', 5557)
+INFO:functional:1 Received Request from 2
+INFO:functional:2 Received Ack from 0
+INFO:functional:0 Sending message type 1 to 1 ('localhost', 5556)
+INFO:functional:1 Received Request from 0
+INFO:functional:0 Sending message type 1 to 2 ('localhost', 5557)
+INFO:functional:0 Sending message type 1 to 3 ('localhost', 5558)
+INFO:functional:2 Received Request from 0
+INFO:functional:2 Sending message type 0 to 0 ('localhost', 5555)
+INFO:functional:0 Received Ack from 2
+INFO:functional:3 Received Request from 0
+INFO:functional:4 Sending message type 2 to 1 ('localhost', 5556)
+INFO:functional:4 Sending message type 2 to 3 ('localhost', 5558)
+INFO:functional:1 Received Release from 4
+INFO:functional:1 Sending message type 0 to 2 ('localhost', 5557)
+INFO:functional:3 Received Release from 4
+INFO:functional:3 Sending message type 0 to 0 ('localhost', 5555)
+INFO:functional:2 Received Ack from 1
+INFO:functional:0 Received Ack from 3
+INFO:functional:2 Sending message type 2 to 0 ('localhost', 5555)
+INFO:functional:2 Sending message type 2 to 1 ('localhost', 5556)
+INFO:functional:0 Received Release from 2
+INFO:functional:1 Received Release from 2
+INFO:functional:1 Sending message type 0 to 0 ('localhost', 5555)
+INFO:functional:0 Received Ack from 1
+INFO:functional:3 Sending message type 1 to 0 ('localhost', 5555)
+INFO:functional:0 Received Request from 3
+INFO:functional:0 Sending message type 0 to 3 ('localhost', 5558)
+INFO:functional:3 Sending message type 1 to 4 ('localhost', 5559)
+INFO:functional:4 Received Request from 3
+INFO:functional:4 Sending message type 0 to 3 ('localhost', 5558)
+INFO:functional:3 Received Ack from 0
+INFO:functional:3 Received Ack from 4
+INFO:functional:0 Sending message type 2 to 1 ('localhost', 5556)
+INFO:functional:0 Sending message type 2 to 2 ('localhost', 5557)
+INFO:functional:0 Sending message type 2 to 3 ('localhost', 5558)
+INFO:functional:2 Received Release from 0
+INFO:functional:1 Received Release from 0
+INFO:functional:3 Received Release from 0
+INFO:functional:3 Sending message type 2 to 0 ('localhost', 5555)
+INFO:functional:3 Sending message type 2 to 4 ('localhost', 5559)
+INFO:functional:0 Received Release from 3
+INFO:functional:4 Received Release from 3
+INFO:functional:1 Sending message type 1 to 0 ('localhost', 5555)
+INFO:functional:0 Received Request from 1
+INFO:functional:1 Sending message type 1 to 2 ('localhost', 5557)
+INFO:functional:0 Sending message type 0 to 1 ('localhost', 5556)
+INFO:functional:1 Sending message type 1 to 4 ('localhost', 5559)
+INFO:functional:2 Received Request from 1
+INFO:functional:2 Sending message type 0 to 1 ('localhost', 5556)
+INFO:functional:1 Received Ack from 0
+INFO:functional:4 Received Request from 1
+INFO:functional:1 Received Ack from 2
+INFO:functional:4 Sending message type 0 to 1 ('localhost', 5556)
+INFO:functional:1 Received Ack from 4
+INFO:functional:1 Sending message type 2 to 0 ('localhost', 5555)
+INFO:functional:1 Sending message type 2 to 2 ('localhost', 5557)
+INFO:functional:1 Sending message type 2 to 4 ('localhost', 5559)
+INFO:functional:4 Received Release from 1
+INFO:functional:0 Received Release from 1
+INFO:functional:2 Received Release from 1
+INFO:functional:4 Sending message type 1 to 1 ('localhost', 5556)
+INFO:functional:4 Sending message type 1 to 3 ('localhost', 5558)
+INFO:functional:1 Received Request from 4
+INFO:functional:1 Sending message type 0 to 4 ('localhost', 5559)
+INFO:functional:4 Received Ack from 1
+INFO:functional:3 Received Request from 4
+INFO:functional:3 Sending message type 0 to 4 ('localhost', 5559)
+INFO:functional:4 Received Ack from 3
+INFO:functional:2 Sending message type 1 to 0 ('localhost', 5555)
+INFO:functional:0 Received Request from 2
+INFO:functional:2 Sending message type 1 to 1 ('localhost', 5556)
+INFO:functional:0 Sending message type 0 to 2 ('localhost', 5557)
+INFO:functional:2 Received Ack from 0
+INFO:functional:1 Received Request from 2
+INFO:functional:0 Sending message type 1 to 1 ('localhost', 5556)
+INFO:functional:0 Sending message type 1 to 2 ('localhost', 5557)
+INFO:functional:1 Received Request from 0
+INFO:functional:0 Sending message type 1 to 3 ('localhost', 5558)
+INFO:functional:2 Received Request from 0
+INFO:functional:2 Sending message type 0 to 0 ('localhost', 5555)
+INFO:functional:3 Received Request from 0
+INFO:functional:0 Received Ack from 2
+INFO:functional:4 Sending message type 2 to 1 ('localhost', 5556)
+INFO:functional:4 Sending message type 2 to 3 ('localhost', 5558)
+INFO:functional:1 Received Release from 4
+INFO:functional:1 Sending message type 0 to 2 ('localhost', 5557)
+INFO:functional:3 Received Release from 4
+INFO:functional:3 Sending message type 0 to 0 ('localhost', 5555)
+INFO:functional:2 Received Ack from 1
+INFO:functional:0 Received Ack from 3
+INFO:functional:2 Sending message type 2 to 0 ('localhost', 5555)
+INFO:functional:2 Sending message type 2 to 1 ('localhost', 5556)
+INFO:functional:1 Received Release from 2
+INFO:functional:0 Received Release from 2
+INFO:functional:1 Sending message type 0 to 0 ('localhost', 5555)
+INFO:functional:0 Received Ack from 1
+INFO:functional:3 Sending message type 1 to 0 ('localhost', 5555)
+INFO:functional:3 Sending message type 1 to 4 ('localhost', 5559)
+INFO:functional:0 Received Request from 3
+INFO:functional:0 Sending message type 0 to 3 ('localhost', 5558)
+INFO:functional:4 Received Request from 3
+INFO:functional:3 Received Ack from 0
+INFO:functional:4 Sending message type 0 to 3 ('localhost', 5558)
+INFO:functional:3 Received Ack from 4
+INFO:functional:0 Sending message type 2 to 1 ('localhost', 5556)
+INFO:functional:0 Sending message type 2 to 2 ('localhost', 5557)
+INFO:functional:0 Sending message type 2 to 3 ('localhost', 5558)
+INFO:functional:1 Received Release from 0
+INFO:functional:2 Received Release from 0
+INFO:functional:3 Received Release from 0
+INFO:functional:3 Sending message type 2 to 0 ('localhost', 5555)
+INFO:functional:3 Sending message type 2 to 4 ('localhost', 5559)
+INFO:functional:0 Received Release from 3
+INFO:functional:4 Received Release from 3
+INFO:functional:1 Sending message type 1 to 0 ('localhost', 5555)
+INFO:functional:0 Received Request from 1
+INFO:functional:1 Sending message type 1 to 2 ('localhost', 5557)
+INFO:functional:0 Sending message type 0 to 1 ('localhost', 5556)
+INFO:functional:2 Received Request from 1
+INFO:functional:1 Received Ack from 0
+INFO:functional:2 Sending message type 0 to 1 ('localhost', 5556)
+INFO:functional:1 Sending message type 1 to 4 ('localhost', 5559)
+INFO:functional:4 Received Request from 1
+INFO:functional:1 Received Ack from 2
+INFO:functional:4 Sending message type 0 to 1 ('localhost', 5556)
+INFO:functional:1 Received Ack from 4
+INFO:functional:1 Sending message type 2 to 0 ('localhost', 5555)
+INFO:functional:1 Sending message type 2 to 2 ('localhost', 5557)
+INFO:functional:1 Sending message type 2 to 4 ('localhost', 5559)
+INFO:functional:0 Received Release from 1
+INFO:functional:2 Received Release from 1
+INFO:functional:4 Received Release from 1
+INFO:functional:4 Sending message type 1 to 1 ('10.60.68.172', 5556)
+INFO:functional:1 Received Request from 4
+INFO:functional:1 Sending message type 0 to 4 ('10.60.68.172', 5559)
+INFO:functional:4 Sending message type 1 to 3 ('10.60.68.172', 5558)
+INFO:functional:4 Received Ack from 1
+INFO:functional:3 Received Request from 4
+INFO:functional:3 Sending message type 0 to 4 ('10.60.68.172', 5559)
+INFO:functional:4 Received Ack from 3
+INFO:functional:1 Sending message type 1 to 0 ('10.60.68.172', 5555)
+INFO:functional:0 Received Request from 1
+INFO:functional:1 Sending message type 1 to 2 ('10.60.68.172', 5557)
+INFO:functional:0 Sending message type 0 to 1 ('10.60.68.172', 5556)
+INFO:functional:1 Received Ack from 0
+INFO:functional:2 Received Request from 1
+INFO:functional:1 Sending message type 1 to 4 ('10.60.68.172', 5559)
+INFO:functional:2 Sending message type 0 to 1 ('10.60.68.172', 5556)
+INFO:functional:1 Received Ack from 2
+INFO:functional:4 Received Request from 1
+INFO:functional:4 Sending message type 0 to 1 ('10.60.68.172', 5556)
+INFO:functional:1 Received Ack from 4
+INFO:functional:3 Sending message type 1 to 0 ('10.60.68.172', 5555)
+INFO:functional:0 Received Request from 3
+INFO:functional:3 Sending message type 1 to 4 ('10.60.68.172', 5559)
+INFO:functional:4 Received Request from 3
+INFO:functional:4 Sending message type 2 to 1 ('10.60.68.172', 5556)
+INFO:functional:4 Sending message type 2 to 3 ('10.60.68.172', 5558)
+INFO:functional:1 Received Release from 4
+INFO:functional:3 Received Release from 4
+INFO:functional:1 Sending message type 2 to 0 ('10.60.68.172', 5555)
+INFO:functional:1 Sending message type 2 to 2 ('10.60.68.172', 5557)
+INFO:functional:1 Sending message type 2 to 4 ('10.60.68.172', 5559)
+INFO:functional:0 Received Release from 1
+INFO:functional:2 Received Release from 1
+INFO:functional:4 Received Release from 1
+INFO:functional:0 Sending message type 0 to 3 ('10.60.68.172', 5558)
+INFO:functional:4 Sending message type 0 to 3 ('10.60.68.172', 5558)
+INFO:functional:3 Received Ack from 0
+INFO:functional:3 Received Ack from 4
+INFO:functional:0 Sending message type 1 to 1 ('10.60.68.172', 5556)
+INFO:functional:1 Received Request from 0
+INFO:functional:1 Sending message type 0 to 0 ('10.60.68.172', 5555)
+INFO:functional:0 Sending message type 1 to 2 ('10.60.68.172', 5557)
+INFO:functional:0 Received Ack from 1
+INFO:functional:2 Received Request from 0
+INFO:functional:2 Sending message type 0 to 0 ('10.60.68.172', 5555)
+INFO:functional:0 Sending message type 1 to 3 ('10.60.68.172', 5558)
+INFO:functional:0 Received Ack from 2
+INFO:functional:3 Received Request from 0
+INFO:functional:3 Sending message type 0 to 0 ('10.60.68.172', 5555)
+INFO:functional:0 Received Ack from 3
+INFO:functional:3 Sending message type 2 to 0 ('10.60.68.172', 5555)
+INFO:functional:3 Sending message type 2 to 4 ('10.60.68.172', 5559)
+INFO:functional:4 Received Release from 3
+INFO:functional:0 Received Release from 3
+INFO:functional:2 Sending message type 1 to 0 ('10.60.68.172', 5555)
+INFO:functional:0 Received Request from 2
+INFO:functional:2 Sending message type 1 to 1 ('10.60.68.172', 5556)
+INFO:functional:0 Sending message type 0 to 2 ('10.60.68.172', 5557)
+INFO:functional:2 Received Ack from 0
+INFO:functional:1 Received Request from 2
+INFO:functional:0 Sending message type 2 to 1 ('10.60.68.172', 5556)
+INFO:functional:0 Sending message type 2 to 2 ('10.60.68.172', 5557)
+INFO:functional:0 Sending message type 2 to 3 ('10.60.68.172', 5558)
+INFO:functional:1 Received Release from 0
+INFO:functional:1 Sending message type 0 to 2 ('10.60.68.172', 5557)
+INFO:functional:2 Received Release from 0
+INFO:functional:3 Received Release from 0
+INFO:functional:2 Received Ack from 1
+INFO:functional:2 Sending message type 2 to 0 ('10.60.68.172', 5555)
+INFO:functional:2 Sending message type 2 to 1 ('10.60.68.172', 5556)
+INFO:functional:0 Received Release from 2
+INFO:functional:1 Received Release from 2
+INFO:functional:4 Sending message type 1 to 1 ('10.60.68.172', 5556)
+INFO:functional:1 Received Request from 4
+INFO:functional:4 Sending message type 1 to 3 ('10.60.68.172', 5558)
+INFO:functional:1 Sending message type 0 to 4 ('10.60.68.172', 5559)
+INFO:functional:4 Received Ack from 1
+INFO:functional:3 Received Request from 4
+INFO:functional:3 Sending message type 0 to 4 ('10.60.68.172', 5559)
+INFO:functional:4 Received Ack from 3
+INFO:functional:1 Sending message type 1 to 0 ('10.60.68.172', 5555)
+INFO:functional:0 Received Request from 1
+INFO:functional:0 Sending message type 0 to 1 ('10.60.68.172', 5556)
+INFO:functional:1 Sending message type 1 to 2 ('10.60.68.172', 5557)
+INFO:functional:1 Received Ack from 0
+INFO:functional:2 Received Request from 1
+INFO:functional:1 Sending message type 1 to 4 ('10.60.68.172', 5559)
+INFO:functional:2 Sending message type 0 to 1 ('10.60.68.172', 5556)
+INFO:functional:1 Received Ack from 2
+INFO:functional:4 Received Request from 1
+INFO:functional:4 Sending message type 0 to 1 ('10.60.68.172', 5556)
+INFO:functional:1 Received Ack from 4
+INFO:functional:3 Sending message type 1 to 0 ('10.60.68.172', 5555)
+INFO:functional:3 Sending message type 1 to 4 ('10.60.68.172', 5559)
+INFO:functional:0 Received Request from 3
+INFO:functional:4 Received Request from 3
+INFO:functional:4 Sending message type 2 to 1 ('10.60.68.172', 5556)
+INFO:functional:4 Sending message type 2 to 3 ('10.60.68.172', 5558)
+INFO:functional:1 Received Release from 4
+INFO:functional:3 Received Release from 4
+INFO:functional:1 Sending message type 2 to 0 ('10.60.68.172', 5555)
+INFO:functional:1 Sending message type 2 to 2 ('10.60.68.172', 5557)
+INFO:functional:1 Sending message type 2 to 4 ('10.60.68.172', 5559)
+INFO:functional:0 Received Release from 1
+INFO:functional:0 Sending message type 0 to 3 ('10.60.68.172', 5558)
+INFO:functional:2 Received Release from 1
+INFO:functional:4 Received Release from 1
+INFO:functional:4 Sending message type 0 to 3 ('10.60.68.172', 5558)
+INFO:functional:3 Received Ack from 0
+INFO:functional:3 Received Ack from 4
+INFO:functional:0 Sending message type 1 to 1 ('10.60.68.172', 5556)
+INFO:functional:1 Received Request from 0
+INFO:functional:0 Sending message type 1 to 2 ('10.60.68.172', 5557)
+INFO:functional:1 Sending message type 0 to 0 ('10.60.68.172', 5555)
+INFO:functional:2 Received Request from 0
+INFO:functional:0 Sending message type 1 to 3 ('10.60.68.172', 5558)
+INFO:functional:2 Sending message type 0 to 0 ('10.60.68.172', 5555)
+INFO:functional:3 Received Request from 0
+INFO:functional:0 Received Ack from 1
+INFO:functional:3 Sending message type 0 to 0 ('10.60.68.172', 5555)
+INFO:functional:0 Received Ack from 2
+INFO:functional:0 Received Ack from 3
+INFO:functional:3 Sending message type 2 to 0 ('10.60.68.172', 5555)
+INFO:functional:3 Sending message type 2 to 4 ('10.60.68.172', 5559)
+INFO:functional:0 Received Release from 3
+INFO:functional:4 Received Release from 3
+INFO:functional:2 Sending message type 1 to 0 ('10.60.68.172', 5555)
+INFO:functional:2 Sending message type 1 to 1 ('10.60.68.172', 5556)
+INFO:functional:0 Received Request from 2
+INFO:functional:0 Sending message type 0 to 2 ('10.60.68.172', 5557)
+INFO:functional:1 Received Request from 2
+INFO:functional:2 Received Ack from 0
+INFO:functional:0 Sending message type 2 to 1 ('10.60.68.172', 5556)
+INFO:functional:0 Sending message type 2 to 2 ('10.60.68.172', 5557)
+INFO:functional:0 Sending message type 2 to 3 ('10.60.68.172', 5558)
+INFO:functional:1 Received Release from 0
+INFO:functional:2 Received Release from 0
+INFO:functional:1 Sending message type 0 to 2 ('10.60.68.172', 5557)
+INFO:functional:3 Received Release from 0
+INFO:functional:2 Received Ack from 1
+INFO:functional:2 Sending message type 2 to 0 ('10.60.68.172', 5555)
+INFO:functional:2 Sending message type 2 to 1 ('10.60.68.172', 5556)
+INFO:functional:0 Received Release from 2
+INFO:functional:1 Received Release from 2

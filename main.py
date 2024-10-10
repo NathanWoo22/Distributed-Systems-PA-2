@@ -11,7 +11,7 @@ import sys
 
 processid = int(sys.argv[1])
 maekawa =Maekawa()
-maekawa.GlobalInitialize(processid, [("localhost", 5555), ("localhost", 5556), ("localhost", 5557), ("localhost", 5558), ("localhost", 5559)])
+maekawa.GlobalInitialize(processid, [("10.60.68.172", 5555), ("10.60.68.172", 5556), ("10.60.68.172", 5557), ("Isengard", 5558), ("Isengard", 5559)])
 maekawa.MInitailize()
 maekawa.MLockMutex()
 print(f"Process {processid} entering critical section")

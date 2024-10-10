@@ -116,6 +116,7 @@ class Maekawa():
         return
 
     def MInitailize(self):
+        print(f"Starting process on node {self.myNum}")
         return
 
     def MLockMutex(self):
@@ -273,6 +274,8 @@ class Maekawa():
                 # print(f"Got {message} from {clientAddress}")
                 received_from = int(composed[-1])
                 # print(f"Sending {self.myNum} to {self.hosts[received_from]}")
+                # print(self.hosts[received_from])
+                # print(self.myNum)
                 self.listenSocket.sendto((str(self.myNum)).encode('utf-8'), self.hosts[received_from])
                     # self.releLock.acquire()
                     # self.myReleases.append(processId)
